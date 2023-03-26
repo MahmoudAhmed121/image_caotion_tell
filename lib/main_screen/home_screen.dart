@@ -53,7 +53,7 @@ class HomeScreenState extends State<HomeScreen> {
               ),
             ));
   }
-    final GlobalKey globalKeyOne = GlobalKey();
+  final GlobalKey globalKeyOne = GlobalKey();
   final GlobalKey globalKeyTwo = GlobalKey();
   final GlobalKey globalKeyThere = GlobalKey();
   final GlobalKey globalKeyFour = GlobalKey();
@@ -86,7 +86,7 @@ class HomeScreenState extends State<HomeScreen> {
     await flutterTts.speak(text);
   }
 
-  List<String> list = [];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

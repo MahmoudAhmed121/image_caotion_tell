@@ -1,21 +1,23 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
+
+import 'package:get/get.dart';
 import 'package:restaurant_booking/colors.dart';
 import 'package:restaurant_booking/cubit/login_cubit/login_cubit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:restaurant_booking/main_screen/main_screen.dart';
+// import 'package:get/get_navigation/src/routes/transitions_type.dart';
+// import 'package:bloc/src/transition.dart' hide Transition;
 
-class TabBarDemo extends StatefulWidget {
+class TabBarDemo extends StatelessWidget {
   TabBarDemo({super.key, required this.initialIndex});
 
   final initialIndex;
 
-  @override
-  State<TabBarDemo> createState() => _TabBarDemoState();
-}
-
-class _TabBarDemoState extends State<TabBarDemo> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+
   final GlobalKey<FormState> _keyTwo = GlobalKey();
 
   TextEditingController nameController = TextEditingController();
@@ -33,23 +35,29 @@ class _TabBarDemoState extends State<TabBarDemo> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          Navigator.pushReplacementNamed(context, "mainScreen");
+          
+         Get.off(MainScreen(), duration: Duration(seconds: 2),transition: Transition.cupertino);
         } else if (state is LoginFailure) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("${state.errorMessage}")));
+         Get.snackbar("Message","",backgroundColor: Colors.white,messageText: Text("${state.errorMessage}",
+         style: TextStyle(color: Colors.black),
+         ),
+         isDismissible: true);
         }
         if (state is RegisSuccess) {
           print(state);
-          Navigator.pushReplacementNamed(context, "tabBar");
+          Get.off(TabBarDemo(initialIndex: 1,),duration: Duration(seconds: 2),transition: Transition.cupertino);
         } else if (state is RegisFailure) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("${state.errorMessage}")));
+    Get.snackbar("Message","",backgroundColor: Colors.white,messageText: Text("${state.errorMessage}",
+         style: TextStyle(color: Colors.black),
+         ),
+         isDismissible: true
+         );
         }
       },
       builder: (context, state) {
         return DefaultTabController(
           length: 2,
-          initialIndex: widget.initialIndex,
+          initialIndex: initialIndex,
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
