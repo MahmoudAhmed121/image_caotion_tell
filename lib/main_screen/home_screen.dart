@@ -4,6 +4,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:restaurant_booking/colors.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({
@@ -52,7 +53,15 @@ class HomeScreenState extends State<HomeScreen> {
               ),
             ));
   }
-
+    final GlobalKey globalKeyOne = GlobalKey();
+  final GlobalKey globalKeyTwo = GlobalKey();
+  final GlobalKey globalKeyThere = GlobalKey();
+  final GlobalKey globalKeyFour = GlobalKey();
+  Future<void> data() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) =>
+        ShowCaseWidget.of(context).startShowCase(
+            [globalKeyOne, globalKeyTwo, globalKeyThere, globalKeyFour]));
+  }
   _imageFromGallery() async {
    var image = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {

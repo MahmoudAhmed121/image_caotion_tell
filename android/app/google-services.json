@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "427831978148-cc4a209t73f7md16tjl0bgo7gktf8l8o.apps.googleusercontent.com",
+          "client_id": "427831978148-s4i0afoga78bkfu3e40h89n4nti69cl4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Ellebda.tell",
+            "certificate_hash": "38993be223ff89dbdce1af67660a6030278c2e86"
+          }
+        },
+        {
+          "client_id": "427831978148-0310iucsfsr1mth7madb7bbaunfe1ria.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +35,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "427831978148-cc4a209t73f7md16tjl0bgo7gktf8l8o.apps.googleusercontent.com",
+              "client_id": "427831978148-0310iucsfsr1mth7madb7bbaunfe1ria.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "427831978148-1hvhauetesj1kdkrnlfvuj9hcp8ncnpj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tell"
+              }
             }
           ]
         }

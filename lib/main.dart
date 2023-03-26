@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:restaurant_booking/colors.dart';
+import 'package:restaurant_booking/cubit/login_cubit/login_cubit.dart';
 import 'package:restaurant_booking/main_screen/account_screen.dart';
 import 'package:restaurant_booking/main_screen/hestory.dart';
 import 'package:restaurant_booking/main_screen/home_screen.dart';
@@ -24,21 +27,26 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'splach',
-      routes: {
-        'splach': (context) => Splach(),
-        'onbord': (context) => OnBording(),
-        'onbordtwo': (context) => OnBordingTwo(),
-        'onbordthree': (context) => OnBordingThree(),
-        'regis': (context) => FirstRegister(),
-        'page': (context) => HomeScreen(),
-        'mainScreen': (context) => MainScreen(),
-        'team': (context) => TeamScreen(),
-        "tabBar": (context) => TabBarDemo(initialIndex: 1),
-        "hestory": (context) => Hestory(),
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LoginCubit(),),
+      ],
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: 'splach',
+        routes: {
+          'splach': (context) => Splach(),
+          'onbord': (context) => OnBording(),
+          'onbordtwo': (context) => OnBordingTwo(),
+          'onbordthree': (context) => OnBordingThree(),
+          'regis': (context) => FirstRegister(),
+          'page': (context) => HomeScreen(),
+          'mainScreen': (context) => MainScreen(),
+          'team': (context) => TeamScreen(),
+          "tabBar": (context) => TabBarDemo(initialIndex: 1),
+          "hestory": (context) => Hestory(),
+        },
+      ),
     );
   }
 }
