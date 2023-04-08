@@ -11,12 +11,12 @@ class RegisSuccess extends LoginState {}
 
 
 class LoginFailure extends LoginState {
- String errorMessage;
+final String errorMessage;
 LoginFailure({required this.errorMessage});
 }
 
 class RegisFailure extends LoginState {
-   String errorMessage;
+ final  String errorMessage;
 RegisFailure({required this.errorMessage});
 }
 

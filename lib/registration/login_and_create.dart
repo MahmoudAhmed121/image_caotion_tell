@@ -1,23 +1,24 @@
 
 import 'package:flutter/material.dart';
-
-
 import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
-
 import 'package:get/get.dart';
 import 'package:restaurant_booking/colors.dart';
 import 'package:restaurant_booking/cubit/login_cubit/login_cubit.dart';
 import 'package:restaurant_booking/main_screen/main_screen.dart';
-// import 'package:get/get_navigation/src/routes/transitions_type.dart';
-// import 'package:bloc/src/transition.dart' hide Transition;
+import 'package:restaurant_booking/services/auth.dart';
 
-class TabBarDemo extends StatelessWidget {
+
+class TabBarDemo extends StatefulWidget {
   TabBarDemo({super.key, required this.initialIndex});
 
   final initialIndex;
 
-  final GlobalKey<FormState> _formKey = GlobalKey();
+  @override
+  State<TabBarDemo> createState() => _TabBarDemoState();
+}
 
+class _TabBarDemoState extends State<TabBarDemo> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
   final GlobalKey<FormState> _keyTwo = GlobalKey();
 
   TextEditingController nameController = TextEditingController();
@@ -36,7 +37,7 @@ class TabBarDemo extends StatelessWidget {
       listener: (context, state) {
         if (state is LoginSuccess) {
           
-         Get.off(MainScreen(), duration: Duration(seconds: 2),transition: Transition.cupertino);
+         Get.off(MainScreen(), duration: Duration(seconds: 2),transition: Transition.fade);
         } else if (state is LoginFailure) {
          Get.snackbar("Message","",backgroundColor: Colors.white,messageText: Text("${state.errorMessage}",
          style: TextStyle(color: Colors.black),
@@ -57,7 +58,7 @@ class TabBarDemo extends StatelessWidget {
       builder: (context, state) {
         return DefaultTabController(
           length: 2,
-          initialIndex: initialIndex,
+          initialIndex: widget.initialIndex,
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
@@ -199,11 +200,8 @@ class TabBarDemo extends StatelessWidget {
                             child: MaterialButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  BlocProvider.of<LoginCubit>(context).signIn(
-                                      nameController: nameController.text,
-                                      emailController: emailController.text,
-                                      passwordController:
-                                          passwordController.text);
+
+                                  BlocProvider.of<LoginCubit>(context).signIn(nameController: nameController.text, emailController: emailController.text, passwordController: passwordController.text);
                                 }
                               },
                               child: const Text(
@@ -231,7 +229,9 @@ class TabBarDemo extends StatelessWidget {
                               children: [
                                 Image.asset('images/ic_google.png'),
                                 MaterialButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                 Auth.instant.signInWithGoogle();
+                                  },
                                   child: const Text(
                                     'Sign up with Google',
                                     style: TextStyle(
@@ -329,10 +329,7 @@ class TabBarDemo extends StatelessWidget {
                           child: MaterialButton(
                             onPressed: () {
                               if (_keyTwo.currentState!.validate()) {
-                                BlocProvider.of<LoginCubit>(context).Login(
-                                    loginController: loginController.text,
-                                    loginPasswordController:
-                                        loginPasswordController.text);
+                                BlocProvider.of<LoginCubit>(context).Login(loginController: loginController.text, loginPasswordController: loginPasswordController.text);
                               }
                             },
                             child: Text(
@@ -359,7 +356,9 @@ class TabBarDemo extends StatelessWidget {
                             children: [
                               Image.asset('images/ic_google.png'),
                               MaterialButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                     Auth.instant.signInWithGoogle();
+                                },
                                 child: const Text(
                                   'Login with Google',
                                   style: TextStyle(

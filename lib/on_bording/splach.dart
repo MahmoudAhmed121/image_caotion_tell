@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:restaurant_booking/colors.dart';
+import 'package:restaurant_booking/services/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splach extends StatefulWidget {
@@ -15,6 +16,7 @@ class _SplachState extends State<Splach> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 2), Navigatorr);
+   
   }
 
   void Navigatorr() async {
@@ -25,7 +27,15 @@ class _SplachState extends State<Splach> {
     } else {
       Navigator.of(context).pushReplacementNamed("mainScreen");
     }
+    if (Auth.instant.user == null) {
+      print("mahmoud erorr ${Auth.instant.user}");
+      Navigator.of(context).pushReplacementNamed("onbord");
+    } else {
+       print("mahmoud erorr ${Auth.instant.user}");
+      Navigator.of(context).pushReplacementNamed("mainScreen");
+    }
   }
+   
 
   @override
   Widget build(BuildContext context) {

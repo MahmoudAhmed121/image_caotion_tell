@@ -1,9 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:restaurant_booking/colors.dart';
 import 'package:restaurant_booking/cubit/login_cubit/login_cubit.dart';
+import 'package:restaurant_booking/firebase_options.dart';
 import 'package:restaurant_booking/main_screen/account_screen.dart';
 import 'package:restaurant_booking/main_screen/hestory.dart';
 import 'package:restaurant_booking/main_screen/home_screen.dart';
@@ -15,7 +17,11 @@ import 'package:restaurant_booking/on_bording/splach.dart';
 import 'package:restaurant_booking/registration/first_registration.dart';
 import 'package:restaurant_booking/registration/login_and_create.dart';
 
-void main() {
+void main()async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Mycolor.primaryColor,
     systemNavigationBarColor: Colors.black,
