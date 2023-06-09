@@ -22,6 +22,5 @@ class Auth {
     Get.off(MainScreen(),
         duration: Duration(seconds: 2), transition: Transition.fade);
     return await FirebaseAuth.instance.signInWithCredential(credential);
-    
   }
 }

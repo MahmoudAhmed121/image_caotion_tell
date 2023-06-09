@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:restaurant_booking/colors.dart';
+import 'package:restaurant_booking/constants/colors.dart';
 
 import 'package:restaurant_booking/model/team_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

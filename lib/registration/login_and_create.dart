@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
 import 'package:get/get.dart';
-import 'package:restaurant_booking/colors.dart';
-import 'package:restaurant_booking/cubit/login_cubit/login_cubit.dart';
+import 'package:restaurant_booking/constants/colors.dart';
+import 'package:restaurant_booking/cubit/login_cubit.dart';
+import 'package:restaurant_booking/cubit/login_state.dart';
 import 'package:restaurant_booking/main_screen/main_screen.dart';
 import 'package:restaurant_booking/services/auth.dart';
 
@@ -81,11 +82,12 @@ class _TabBarDemoState extends State<TabBarDemo> {
                 unselectedLabelColor: Color(0xff89909E),
                 tabs: [
                   Tab(child: Text('Create Account')),
-                  Tab(child: Text('Login')),
+                  Tab(child: Text('Login'),),
                 ],
               ),
             ),
             body: TabBarView(
+           
               children: [
                 Form(
                   key: _formKey,

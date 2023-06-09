@@ -1,6 +1,10 @@
-part of 'login_cubit.dart';
+
+
+import 'package:flutter/material.dart';
 
 @immutable
+
+
 abstract class LoginState {}
 
 class LoginInitial extends LoginState {}
@@ -19,4 +23,3 @@ class RegisFailure extends LoginState {
  final  String errorMessage;
 RegisFailure({required this.errorMessage});
 }
-

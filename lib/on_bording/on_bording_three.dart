@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_booking/colors.dart';
+import 'package:restaurant_booking/constants/cach_helper.dart';
+import 'package:restaurant_booking/constants/colors.dart';
 
 class OnBordingThree extends StatelessWidget {
   @override
@@ -39,8 +40,12 @@ class OnBordingThree extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacementNamed("regis");
+                        onPressed: () async {
+                          await CacheHelber.saveData(
+                                  key: "onbording", value: true)
+                              .then((value) {
+                            Navigator.of(context).pushReplacementNamed("regis");
+                          });
                         },
                         icon: Icon(
                           Icons.arrow_forward_sharp,

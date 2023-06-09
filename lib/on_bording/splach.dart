@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:restaurant_booking/colors.dart';
-import 'package:restaurant_booking/services/auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:restaurant_booking/constants/colors.dart';
+
+import '../constants/cach_helper.dart';
 
 class Splach extends StatefulWidget {
   const Splach({super.key});
@@ -15,27 +15,22 @@ class _SplachState extends State<Splach> {
   @override
   void initState() {
     super.initState();
+
     Timer(Duration(seconds: 2), Navigatorr);
-   
   }
 
   void Navigatorr() async {
-    final prefs = await SharedPreferences.getInstance();
-    final access = await prefs.get("access_token");
-    if (access == null) {
-      Navigator.of(context).pushReplacementNamed("onbord");
-    } else {
+    final token = await CacheHelber.getData(key: "token");
+    final onbording = await CacheHelber.getData(key: "onbording");
+
+    if (token != null) {
       Navigator.of(context).pushReplacementNamed("mainScreen");
-    }
-    if (Auth.instant.user == null) {
-      print("mahmoud erorr ${Auth.instant.user}");
-      Navigator.of(context).pushReplacementNamed("onbord");
+    } else if (onbording != null) {
+      Navigator.of(context).pushReplacementNamed("regis");
     } else {
-       print("mahmoud erorr ${Auth.instant.user}");
-      Navigator.of(context).pushReplacementNamed("mainScreen");
+      Navigator.of(context).pushReplacementNamed("onbord");
     }
   }
-   
 
   @override
   Widget build(BuildContext context) {

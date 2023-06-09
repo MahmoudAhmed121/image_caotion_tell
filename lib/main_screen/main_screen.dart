@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lottie/lottie.dart';
-import 'package:restaurant_booking/colors.dart';
+import 'package:restaurant_booking/constants/colors.dart';
 import 'package:restaurant_booking/main_screen/account_screen.dart';
 import 'package:restaurant_booking/main_screen/hestory.dart';
 import 'package:restaurant_booking/main_screen/home_screen.dart';

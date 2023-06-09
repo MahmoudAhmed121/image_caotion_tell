@@ -1,10 +1,15 @@
-import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:restaurant_booking/colors.dart';
+import 'package:restaurant_booking/constants/colors.dart';
+import 'package:restaurant_booking/upload/upload_cubit.dart';
+
 import 'package:showcaseview/showcaseview.dart';
+
+import '../cubit/history_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({
@@ -18,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 final TextEditingController textEditingController = TextEditingController();
 
 class HomeScreenState extends State<HomeScreen> {
-  File? imageFile;
+  CollectionReference users = FirebaseFirestore.instance.collection('photo');
 
 // Show Option
   _showOption(BuildContext context) {
@@ -35,7 +40,7 @@ class HomeScreenState extends State<HomeScreen> {
                       ),
                       title: Text("Gallery"),
                       onTap: () {
-                        _imageFromGallery();
+                        UploadCubit.get(context).imageFromGallery();
                       },
                     ),
                     ListTile(
@@ -45,7 +50,7 @@ class HomeScreenState extends State<HomeScreen> {
                       ),
                       title: Text("Camera"),
                       onTap: () {
-                        _imageFromCamera();
+                        UploadCubit.get(context).imageFromCamera();
                       },
                     )
                   ],
@@ -53,29 +58,16 @@ class HomeScreenState extends State<HomeScreen> {
               ),
             ));
   }
+
   final GlobalKey globalKeyOne = GlobalKey();
   final GlobalKey globalKeyTwo = GlobalKey();
   final GlobalKey globalKeyThere = GlobalKey();
   final GlobalKey globalKeyFour = GlobalKey();
+
   Future<void> data() async {
     WidgetsBinding.instance.addPostFrameCallback((_) =>
         ShowCaseWidget.of(context).startShowCase(
             [globalKeyOne, globalKeyTwo, globalKeyThere, globalKeyFour]));
-  }
-  _imageFromGallery() async {
-   var image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      imageFile = File(image!.path);
-    });
-    Navigator.of(context).pop();
-  }
-
-  _imageFromCamera() async {
-    var image = await ImagePicker().pickImage(source: ImageSource.camera);
-    setState(() {
-      imageFile = File(image!.path);
-    });
-    Navigator.of(context).pop();
   }
 
   final FlutterTts flutterTts = FlutterTts();
@@ -85,7 +77,6 @@ class HomeScreenState extends State<HomeScreen> {
     await flutterTts.setPitch(1);
     await flutterTts.speak(text);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -105,13 +96,14 @@ class HomeScreenState extends State<HomeScreen> {
                 Container(
                   height: 250,
                   width: double.infinity,
-                  child: imageFile != null
+                  child: UploadCubit.get(context).imageFile != null
                       ? InkWell(
                           onTap: () {
                             _showOption(context);
                           },
                           child: Container(
-                            child: Image.file(imageFile!),
+                            child:
+                                Image.file(UploadCubit.get(context).imageFile!),
                           ),
                         )
                       : Center(
@@ -144,20 +136,43 @@ class HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     children: [
-                      Container(
-                        child: TextFormField(
-                          controller: textEditingController,
-                          decoration: InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Mycolor.primaryColor))),
-                        ),
+                      BlocConsumer<UploadCubit, UploadState>(
+                        listener: (context, state) {
+                          if (state is UploadSucess) {
+                            textEditingController.text =
+                                state.responseModel.result;
+                          }
+                        },
+                        builder: (context, state) {
+                          return ConditionalBuilder(
+                            fallback: (context) {
+                              return CircularProgressIndicator();
+                            },
+                            condition: state is! UploadLoading,
+                            builder: (context) {
+                              return Container(
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: textEditingController,
+                                  decoration: InputDecoration(
+                                    enabledBorder: border(),
+                                    // disabledBorder: border(),
+
+                                    border: border(),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
                       ),
                       SizedBox(
                         height: 90,
                       ),
                       GestureDetector(
-                        onTap: (() {}),
+                        onTap: (() {
+                          context.read<UploadCubit>().upload();
+                        }),
                         child: Container(
                           height: 55,
                           margin: EdgeInsets.only(left: 40, right: 40),
@@ -180,7 +195,9 @@ class HomeScreenState extends State<HomeScreen> {
                       GestureDetector(
                         onTap: () {
                           speak(textEditingController.text);
-                          print(" mahmoud ${textEditingController.text}");
+                          context
+                              .read<HistoryCubit>()
+                              .saveValue(textEditingController.text);
                         },
                         child: Container(
                           height: 55,
@@ -208,4 +225,11 @@ class HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+UnderlineInputBorder border() {
+  return UnderlineInputBorder(
+      borderSide: BorderSide(
+    color: Colors.white,
+  ));
 }

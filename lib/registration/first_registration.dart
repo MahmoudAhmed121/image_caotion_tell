@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_booking/colors.dart';
+import 'package:restaurant_booking/constants/colors.dart';
 import 'package:restaurant_booking/registration/login_and_create.dart';
 
 class FirstRegister extends StatelessWidget {
@@ -65,14 +65,14 @@ class FirstRegister extends StatelessWidget {
                                 builder: (BuildContext bc) {
                                   return ClipRRect(
                                     borderRadius: const BorderRadius.vertical(
-                                      top: Radius.circular(20.0),
+                                      top: Radius.circular(20),
                                     ),
                                     child: Container(
                                       height: 600.0,
                                       decoration: const BoxDecoration(
-                                          color: Colors.white,
+                                          color: Colors.amber,
                                           borderRadius: BorderRadius.vertical(
-                                            top: Radius.circular(20.0),
+                                            top: Radius.circular(4),
                                           )),
                                       child: TabBarDemo(initialIndex: 0),
                                     ),

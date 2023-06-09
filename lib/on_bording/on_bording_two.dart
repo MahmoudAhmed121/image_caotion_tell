@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:restaurant_booking/colors.dart';
+import 'package:restaurant_booking/constants/colors.dart';
 
 class OnBordingTwo extends StatelessWidget {
   @override
