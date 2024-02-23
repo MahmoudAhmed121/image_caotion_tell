@@ -1,10 +1,10 @@
-class ResponseModel {
+class ImageModel {
   String result;
 
-  ResponseModel({required this.result});
+  ImageModel({required this.result});
 
-  factory ResponseModel.fromJson(json) {
-    return ResponseModel(
+  factory ImageModel.fromJson(json) {
+    return ImageModel(
       result: json["result"],
     );
   }

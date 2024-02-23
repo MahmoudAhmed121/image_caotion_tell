@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
   List listOfScreens = [
     HomeScreen(),
-    Hestory(),
+    History(),
     TeamScreen(),
   ];
 
@@ -63,7 +63,8 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: Container(
-        color: Mycolor.primaryColor,
+        height: 70,
+        color:Mycolor.primaryColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: GNav(
@@ -81,14 +82,17 @@ class _MainScreenState extends State<MainScreen> {
             tabs: [
               GButton(
                 icon: Icons.home,
+                 iconSize: 30,
                 text: "Home",
               ),
               GButton(
                 icon: Icons.history_edu_outlined,
-                text: "history",
+                iconSize: 30,
+                text: "History",
               ),
               GButton(
                 icon: Icons.person,
+                 iconSize: 30,
                 text: "About",
               )
             ],

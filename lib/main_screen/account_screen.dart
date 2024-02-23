@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:restaurant_booking/constants/colors.dart';
+import 'package:restaurant_booking/main_screen/custom_text.dart';
 
 import 'package:restaurant_booking/model/team_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TeamScreen extends StatefulWidget {
   TeamScreen({Key? key}) : super(key: key);
@@ -83,6 +85,13 @@ class _TeamScreenState extends State<TeamScreen> {
             "About\n\nhave a Bachelor's degree in Computers and Information from The Egyptian University for E-Learning (EELU)."),
   ];
 
+  Uri uriLinkedIn = Uri.parse("https://www.linkedin.com/feed/");
+  Uri uriFaceBook =
+      Uri.parse("https://web.facebook.com/profile.php?id=100027162594156");
+  Uri uriInstagram = Uri.parse("https://www.instagram.com/m.a.h.m.o.u.d121/");
+  Uri uriYouTube =
+      Uri.parse("https://www.youtube.com/channel/UCrIEjhzFuNKCvydJ8ePoeAg");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,18 +119,39 @@ class _TeamScreenState extends State<TeamScreen> {
                         Text(
                           "About Tell",
                           style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w700,
                               color: Mycolor.primaryColor),
                         ),
                         SizedBox(
                           height: 25,
                         ),
-                        Container(
-                          child: Text(
-                            "Welcome to our image caption generation app!\n\nOur app is designed to help users quickly and\neasily generate captions for their images. Whether\nyou're a social media influencer, a marketer, or just\nsomeone looking to add a little extra context to\nyour personal photos, our app makes it easy to\ncreate engaging and accurate captions.\n\nOur app uses state-of-the-art AI and machine\nlearning algorithms to analyze the content of an\nimage and generate a caption that accurately\ndescribes it. Whether the image is of a landscape,\na person, or an object, our app can understand its\ncontents and generate a caption that accurately\ndescribes it.\n\nOur user interface is intuitive and easy to use,\nmaking it accessible to users of all levels of\ntechnical expertise. Simply upload an image, and\nour app will generate a caption in seconds. You\ncan also edit and refine the generated caption to\nsuit your needs.\n\nWe understand the importance of privacy and\nsecurity, so we take great care to ensure that all\nimages and captions are handled securely and\nconfidentially.\n\nOur app is constantly being updated and improved\nto ensure that we provide the best possible\nexperience for our users. We are dedicated to\nproviding an accurate, fast and user-friendly\nservice.\n\nThank you for choosing our image caption\ngeneration app, we hope you find it useful and\nenjoy using it.",
-                            style: TextStyle(fontSize: 17),
-                            textAlign: TextAlign.center,
+                        Text(
+                          "Welcome to our image caption generation app!",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              DescriptionText(
+                                text:
+                                    "Our app is designed to help users quickly and easily generate captions for their images. Whether you're a social media influencer, a marketer, or just someone looking to add a little extra context to your personal photos, our app makes it easy to create engaging and accurate captions. Our app uses state-of-the-art AI and machine learning algorithms to analyze the content of an image and generate a caption that accurately describes it.",
+                              ),
+                              SizedBox(
+                                height: 25,
+                              ),
+                              DescriptionText(
+                                text:
+                                    "Whether the image is of a landscape, a person, or an object, our app can understand its contents and generate a caption that accurately describes it. Our user interface is intuitive and easy to use, making it accessible to users of all levels of technical expertise. Simply upload an image, and our app will generate a caption in seconds. You can also edit and refine the generated caption to suit your needs. We understand the importance of privacy and security, so we take great care to ensure that all images and captions are handled securely and confidentially. Our app is constantly being updated and improved to ensure that we provide the best possible experience for our users. We are dedicated to providing an accurate, fast and user-friendly service. Thank you for choosing our image caption generation app, we hope you find it useful and enjoy using it.",
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
@@ -164,7 +194,7 @@ class _TeamScreenState extends State<TeamScreen> {
                             widthFactor: 1.4,
                             heightFactor: 1.4,
                             child: Text(
-                              "Welcome to tell Team",
+                              "Welcome to Tell Team",
                               style: TextStyle(color: Mycolor.primaryColor),
                             ),
                           ),
@@ -228,7 +258,11 @@ class _TeamScreenState extends State<TeamScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       InkWell(
-                                        onTap: (() {}),
+                                        onTap: (() async{
+                                          if(await canLaunchUrl(uriFaceBook)){
+                                            await launchUrl(uriFaceBook);
+                                          }
+                                        }),
                                         child: Image.asset(
                                           "images/facebook.png",
                                           width: 35,
@@ -238,7 +272,11 @@ class _TeamScreenState extends State<TeamScreen> {
                                         width: 10,
                                       ),
                                       InkWell(
-                                        onTap: (() {}),
+                                         onTap: (() async{
+                                          if(await canLaunchUrl(uriLinkedIn)){
+                                            await launchUrl(uriLinkedIn);
+                                          }
+                                        }),
                                         child: Image.asset(
                                           "images/linkedIn.png",
                                           width: 35,
@@ -248,7 +286,11 @@ class _TeamScreenState extends State<TeamScreen> {
                                         width: 10,
                                       ),
                                       InkWell(
-                                        onTap: (() {}),
+                                         onTap: (() async{
+                                          if(await canLaunchUrl(uriInstagram)){
+                                            await launchUrl(uriInstagram);
+                                          }
+                                        }),
                                         child: Image.asset(
                                           "images/instgram.png",
                                           width: 35,
@@ -258,7 +300,11 @@ class _TeamScreenState extends State<TeamScreen> {
                                         width: 10,
                                       ),
                                       InkWell(
-                                        onTap: (() {}),
+                                         onTap: (() async{
+                                          if(await canLaunchUrl(uriYouTube)){
+                                            await launchUrl(uriYouTube);
+                                          }
+                                        }),
                                         child: Image.asset(
                                           "images/youTube.png",
                                           width: 35,

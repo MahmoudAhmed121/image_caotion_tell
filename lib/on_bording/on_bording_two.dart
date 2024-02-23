@@ -10,7 +10,7 @@ class OnBordingTwo extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(40.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -18,30 +18,45 @@ class OnBordingTwo extends StatelessWidget {
                 Lottie.asset(
                   'animations/onbording.json',
                 ),
-                SizedBox(height: 15),
+                  SizedBox(height: 60),
                 Text('Take a picture or upload',
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff1F2937))),
+                         color: Mycolor.primaryColor)),
                 SizedBox(
-                  height: 15,
+                  height: 22,
                 ),
                 Text(
-                  'Simply upload an image, and our app will generate a caption in seconds. You can also edit and refine the generated caption to suit your needs.',
+                  'Simply upload an image, and our app will',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 17, color: Colors.grey),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
-                SizedBox(height: 144),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "generate a caption in seconds. ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                // Text(
+                //   "edit and refine the generated caption needs.",
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(fontSize: 16, color: Colors.grey),
+                // ),
+                SizedBox(height: 83.5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(
-                              context, 'onbordthree');
+                          Navigator.pushReplacementNamed(context, 'onbordthree');
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_forward_sharp,
                           color: Mycolor.primaryColor,
                           size: 30,

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
 import 'package:get/get.dart';
 import 'package:restaurant_booking/constants/colors.dart';
-import 'package:restaurant_booking/cubit/login_cubit.dart';
-import 'package:restaurant_booking/cubit/login_state.dart';
+import 'package:restaurant_booking/cubit/login_cubit/login_cubit.dart';
+import 'package:restaurant_booking/cubit/login_cubit/login_state.dart';
 import 'package:restaurant_booking/main_screen/main_screen.dart';
 import 'package:restaurant_booking/services/auth.dart';
 
@@ -38,7 +38,7 @@ class _TabBarDemoState extends State<TabBarDemo> {
       listener: (context, state) {
         if (state is LoginSuccess) {
           
-         Get.off(MainScreen(), duration: Duration(seconds: 2),transition: Transition.fade);
+         Get.off(MainScreen(), duration: Duration(seconds: 1),transition: Transition.native);
         } else if (state is LoginFailure) {
          Get.snackbar("Message","",backgroundColor: Colors.white,messageText: Text("${state.errorMessage}",
          style: TextStyle(color: Colors.black),
@@ -46,8 +46,11 @@ class _TabBarDemoState extends State<TabBarDemo> {
          isDismissible: true);
         }
         if (state is RegisSuccess) {
-          print(state);
-          Get.off(TabBarDemo(initialIndex: 1,),duration: Duration(seconds: 2),transition: Transition.cupertino);
+         
+          Get.snackbar("Message","",backgroundColor: Colors.white,messageText: Text("Account successfully created",
+         style: TextStyle(color: Colors.black),
+         ),
+          );
         } else if (state is RegisFailure) {
     Get.snackbar("Message","",backgroundColor: Colors.white,messageText: Text("${state.errorMessage}",
          style: TextStyle(color: Colors.black),
@@ -207,7 +210,7 @@ class _TabBarDemoState extends State<TabBarDemo> {
                                 }
                               },
                               child: const Text(
-                                'Registration',
+                                'Register',
                                 style: TextStyle(
                                     color: Color(0xff9CA3AF), fontSize: 20),
                               ),
@@ -232,7 +235,7 @@ class _TabBarDemoState extends State<TabBarDemo> {
                                 Image.asset('images/ic_google.png'),
                                 MaterialButton(
                                   onPressed: () {
-                                 Auth.instant.signInWithGoogle();
+                                 Auth.instance.signInWithGoogle();
                                   },
                                   child: const Text(
                                     'Sign up with Google',
@@ -359,7 +362,7 @@ class _TabBarDemoState extends State<TabBarDemo> {
                               Image.asset('images/ic_google.png'),
                               MaterialButton(
                                 onPressed: () {
-                                     Auth.instant.signInWithGoogle();
+                                     Auth.instance.signInWithGoogle();
                                 },
                                 child: const Text(
                                   'Login with Google',

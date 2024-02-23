@@ -20,16 +20,16 @@ class _SplachState extends State<Splach> {
   }
 
   void Navigatorr() async {
-    final token = await CacheHelber.getData(key: "token");
-    final onbording = await CacheHelber.getData(key: "onbording");
+    final token = await CacheHelber.getData(key: "access_token");
+    
 
     if (token != null) {
       Navigator.of(context).pushReplacementNamed("mainScreen");
-    } else if (onbording != null) {
-      Navigator.of(context).pushReplacementNamed("regis");
-    } else {
+    }  else {
       Navigator.of(context).pushReplacementNamed("onbord");
     }
+
+ 
   }
 
   @override

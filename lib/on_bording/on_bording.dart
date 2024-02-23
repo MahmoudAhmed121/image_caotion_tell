@@ -10,7 +10,7 @@ class OnBording extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(40.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -19,16 +19,35 @@ class OnBording extends StatelessWidget {
                   'animations/onbording.json',
                 ),
                 SizedBox(height: 60),
-                Text('Tell app ',
+                Text('Tell  App ',
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff1F2937))),
+                         color: Mycolor.primaryColor)),
                 SizedBox(
-                  height: 15,
+                  height: 22,
                 ),
                 Text(
-                  'Welcome to our image caption generation app!\n\nOur app is designed to help users quickly and easily generate captions for their images. ',
+                  'Welcome to our image caption generation app!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Our app is designed to help users quickly and",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  " easily generate captions for their images.",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),

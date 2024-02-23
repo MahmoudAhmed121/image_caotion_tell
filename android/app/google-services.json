@@ -1,49 +1,34 @@
 {
   "project_info": {
-    "project_number": "427831978148",
-    "project_id": "image-caption-9a008",
-    "storage_bucket": "image-caption-9a008.appspot.com"
+    "project_number": "542555429310",
+    "project_id": "tell-360aa",
+    "storage_bucket": "tell-360aa.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:427831978148:android:b7ca49e7c0781f5ab5de31",
+        "mobilesdk_app_id": "1:542555429310:android:4f8ceec89b7f527db341ef",
         "android_client_info": {
           "package_name": "com.Ellebda.tell"
         }
       },
       "oauth_client": [
         {
-          "client_id": "427831978148-s4i0afoga78bkfu3e40h89n4nti69cl4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Ellebda.tell",
-            "certificate_hash": "38993be223ff89dbdce1af67660a6030278c2e86"
-          }
-        },
-        {
-          "client_id": "427831978148-0310iucsfsr1mth7madb7bbaunfe1ria.apps.googleusercontent.com",
+          "client_id": "542555429310-uegmanhenbempvt6hg1usj71gq3ghjgh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDEf06Ev19XaG0SkFaiGHPUFO38y3XZjCI"
+          "current_key": "AIzaSyDxDrrpzAH1A0ps4SU-cBkOPEJxvqVLml4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "427831978148-0310iucsfsr1mth7madb7bbaunfe1ria.apps.googleusercontent.com",
+              "client_id": "542555429310-34q98tku1aml5gbaai6hdov1i231nrhv.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "427831978148-1hvhauetesj1kdkrnlfvuj9hcp8ncnpj.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.tell"
-              }
             }
           ]
         }

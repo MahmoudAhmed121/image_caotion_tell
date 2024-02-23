@@ -1,7 +1,8 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_booking/cubit/login_state.dart';
+import 'package:restaurant_booking/cubit/login_cubit/login_state.dart';
+
 
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,7 +31,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     } on DioError catch (e) {
       if (e.response!.statusCode == 401) {
-        emit(LoginFailure(errorMessage: "The email or password is incorrect"));
+        emit(LoginFailure(errorMessage: " please make sure you have entered the right credentials"));
        
       }
     }

@@ -25,18 +25,18 @@ class FirstRegister extends StatelessWidget {
                 const Text(
                   'Welcome',
                   style: TextStyle(
-                      color: Color(0xff1F2937),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35),
+                    color: Mycolor.primaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35,
+                  ),
                 ),
                 SizedBox(height: 18),
                 const Text(
                   "Before enjoying Tell services \n       \n         Please register first",
                   style: TextStyle(
-                      fontSize: 17,
-                      color: Color(
-                        0xff4B5563,
-                      )),
+                    fontSize: 17,
+                    color: Colors.grey
+                  ),
                 ),
                 SizedBox(height: 20),
                 Padding(

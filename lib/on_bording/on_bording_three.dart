@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_booking/constants/cach_helper.dart';
 import 'package:restaurant_booking/constants/colors.dart';
 
 class OnBordingThree extends StatelessWidget {
@@ -10,7 +9,7 @@ class OnBordingThree extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(40.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -20,34 +19,49 @@ class OnBordingThree extends StatelessWidget {
                   height: 250,
                   width: 250,
                 ),
-                SizedBox(height: 15),
-                Text('Tell the story behind every images',
+                SizedBox(height: 60),
+                Text('Tell The Story Behind Every Image',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: Mycolor.primaryColor)),
                 SizedBox(
-                  height: 15,
+                  height: 22,
                 ),
                 Text(
-                  'Thank you for choosing our image caption generation app, we hope you find it useful and enjoy using it.',
+                  'Thank you for choosing our image caption',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, color: Colors.grey),
+                  style: TextStyle(fontSize: 16, color: Colors.grey
+                  ),
                 ),
-                SizedBox(height: 177),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "generation app, we hope you find it useful",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, color: Colors.grey
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "and enjoy using it.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, color: Colors.grey
+                  ),
+                ),
+                 SizedBox(height: 83.5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                        onPressed: () async {
-                          await CacheHelber.saveData(
-                                  key: "onbording", value: true)
-                              .then((value) {
-                            Navigator.of(context).pushReplacementNamed("regis");
-                          });
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, 'regis');
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_forward_sharp,
                           color: Mycolor.primaryColor,
                           size: 30,
